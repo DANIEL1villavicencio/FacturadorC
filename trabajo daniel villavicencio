@@ -1,0 +1,152 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int resp, opcion;
+    float numa = 0, numb = 0, numc = 0, numd = 0, nume = 0, totala = 0, totalb = 0, totalc = 0, totald = 0, totale = 0;
+    float precioa = 150, preciob = 55, precioc = 180, preciod = 70, precioe = 120;
+    char select1;
+    float subta = 0, subtb = 0, subtc = 0, subtd = 0, subte = 0, subtotal = 0, subtotaldes = 0, total = 0;
+    char nombre[50], cedula[20];
+    do
+    {
+        printf("presione 1 para ingresar a menu o 2 para salir del programa ");
+        fflush(stdin);
+        scanf("%i", &opcion);
+        switch (opcion)
+        {
+        case 1:
+            do
+            {
+                printf("---------------BIENVENIDOS-------------------------\n");
+                printf("Elija que producto desea facturar:\n");
+                printf("a) Llantas (Precio: $150)\n");
+                printf("b) Kit Pastillas de freno (Precio: $55)\n");
+                printf("c) Kit de embrague (Precio: $180)\n");
+                printf("d) Faro (Precio: $70)\n");
+                printf("e) Radiador (Precio: $120)\n");
+                fflush(stdin);
+                scanf("%c", &select1);
+                switch (select1)
+                {
+                case 'a':
+                    do
+                    {
+                        printf("Ingrese la cantidad de Llantas que desea comprar: ");
+                        fflush(stdin);
+                        scanf("%f", &numa);
+                        totala = totala + numa;
+                        subta = precioa * totala;
+                        printf("desea ingresar otro producto? (presione 1 para ingresar nuevos datos o cualquier numero para salir) ");
+                        fflush(stdin);
+                        scanf("%i", &resp);
+                    } while (resp == 1);
+                    break;
+                case 'b':
+                    do
+                    {
+                        printf("Ingrese la cantidad de Pastillas de freno que desea comprar: ");
+                        fflush(stdin);
+                        scanf("%f", &numb);
+                        totalb = totalb + numb;
+                        subtb = preciob * totalb;
+                        printf("desea ingresar otro producto? (presione 1 para ingresar nuevos datos o cualquier numero para salir) ");
+                        fflush(stdin);
+                        scanf("%i", &resp);
+                    } while (resp == 1);
+                    break;
+                case 'c':
+                    do
+                    {
+                        printf("Ingrese la cantidad de Kit embrague de freno que desea comprar: ");
+                        fflush(stdin);
+                        scanf("%f", &numc);
+                        totalc = totalc + numc;
+                        subtc = precioc * totalc;
+                        printf("desea ingresar otro producto? (presione 1 para ingresar nuevos datos o cualquier numero para salir) ");
+                        fflush(stdin);
+                        scanf("%i", &resp);
+                    } while (resp == 1);
+                    break;
+                case 'd':
+                    do
+                    {
+                        printf("Ingrese la cantidad de faros que desea comprar: ");
+                        fflush(stdin);
+                        scanf("%f", &numd);
+                        totald = totald + numd;
+                        subtd = preciod * totald;
+                        printf("desea ingresar otro producto? (presione 1 para ingresar nuevos datos o cualquier numero para salir) ");
+                        fflush(stdin);
+                        scanf("%i", &resp);
+                    } while (resp == 1);
+                    break;
+                case 'e':
+                    do
+                    {
+                        printf("Ingrese la cantidad de radiadores que desea comprar: ");
+                        fflush(stdin);
+                        scanf("%f", &nume);
+                        totale = totale + nume;
+                        subte = precioe * totale;
+                        printf("desea ingresar otro producto? (presione 1 para ingresar nuevos datos o cualquier numero para salir) ");
+                        fflush(stdin);
+                        scanf("%i", &resp);
+                    } while (resp == 1);
+                    break;
+                }
+
+                subtotal = subta + subtb + subtc + subtd + subte;
+                if (subtotal > 100 && subtotal <= 500)
+                {
+                    subtotaldes = subtotal * 0.95;
+                }
+                else if (subtotal > 500 && subtotal <= 1000)
+                {
+                    subtotaldes = subtotal * 0.93;
+                }
+                else if (subtotal > 1000)
+                {
+                    subtotaldes = subtotal * 0.90;
+                }
+
+                total = subtotaldes * 1.12;
+                printf("desea regresar agregar otro articulo ? (presione 1 para regresar al menu o cualquier numero para proceder a la factura)\n");
+                scanf("%i", &resp);
+            } while (resp == 1);
+            printf("Ingrese el nombre del cliente\n");
+            fflush(stdin);
+            scanf("%s", &nombre);
+            printf("Ingrese el numero de cedula\n");
+            fflush(stdin);
+            scanf("%s", &cedula);
+
+            printf("---------------Factura--------------\n");
+            printf("Nombre del cliente: %s\n", nombre);
+            printf("Cedula del cliente: %s\n", cedula);
+            printf("Producto\t\tCantidad\t\tSubtotal\n");
+            if (subta > 0)
+                printf("Llantas\t\t%.2f.\t\t%.2f\n", totala, subta);
+            if (subtb > 0)
+                printf("Pastillas Freno\t\t%.2f\t\t%.2f\n", totalb, subtb);
+            if (subtc > 0)
+                printf("Embrague\t\t%.2f\t\t%.2f\n", totalc, subtc);
+            if (subtd > 0)
+                printf("Faro\t\t%.2f\t\t%.2f\n", totald, subtd);
+            if (subte > 0)
+                printf("Radiador\t\t%.2f\t\t%.2f\n", totale, subte);
+            printf("Sub total\t%.2f\n", subtotal);
+            printf("Sub total con descuento\t%.2f\n", subtotaldes);
+            printf("Total\t%.2f\n", total);
+            break;
+        case 2:
+            printf("fin del programa\n");
+            break;
+
+        default:
+            printf("opcion no valida\n");
+            break;
+        }
+    } while (opcion != 2);
+    return 0;
+}
